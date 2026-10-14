@@ -1,0 +1,240 @@
+{
+  "baseUrl": "http://localhost:5174",
+  "outputDir": "docs/screenshots",
+  "deviceScaleFactor": 2,
+  "locale": "es-ES",
+  "settle": 400,
+  "frame": {
+    "style": "macos",
+    "title": "canelosmath",
+    "theme": "dark",
+    "background": "sunset",
+    "padding": 64
+  },
+  "shots": [
+    {
+      "name": "juego",
+      "path": "/",
+      "waitFor": ".juego",
+      "actions": [
+        {
+          "eval": "(() => {\n    localStorage.setItem('calculo-rapido:modo', 'escribir');\n    localStorage.setItem('calculo-rapido:dificultad', 'media');\n    localStorage.setItem('calculo-rapido:tema', 'canelos');\n    localStorage.setItem('calculo-rapido:sonido', 'off');\n  })()"
+        },
+        {
+          "goto": "/"
+        },
+        {
+          "waitFor": ".juego"
+        },
+        {
+          "press": "Space"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "eval": "(async () => {\n      const dormir = (ms) => new Promise((r) => setTimeout(r, ms));\n      const resolver = () => {\n        const [a, op, b] = [...document.querySelectorAll('.operacion > span')].slice(0, 3).map((x) => x.textContent);\n        return op === '+' ? +a + +b : +a - +b;\n      };\n      const libre = () => document.querySelector('.operacion:not(.operacion--bien):not(.operacion--error)');\n      const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set;\n      const escribir = (v) => {\n        const inp = document.querySelector('.entrada-oculta');\n        setter.call(inp, v);\n        inp.dispatchEvent(new Event('input', { bubbles: true }));\n      };\n      const errores = [];\n      const pausas = [];\n      for (let i = 0; i < 4; i++) {\n        while (!libre()) await dormir(30);\n        await dormir(pausas[i] ?? 250);\n        const r = resolver();\n        const v = errores.includes(i) ? r + 10 : r;\n        if ('escribir' === 'escribir') escribir(String(v));\n        else [...document.querySelectorAll('.opcion')].find((b) => +b.lastChild.textContent === v || errores.includes(i))?.click();\n        await dormir(120);\n      }\n      if ('parcial' === 'parcial') {\n        while (!libre()) await dormir(30);\n        escribir(String(resolver())[0]);\n      }\n    })()"
+        },
+        {
+          "wait": 1400
+        },
+        {
+          "eval": "(() => {\n    const s = document.createElement('style');\n    s.textContent = `\n      html body .grafica__linea { stroke-dashoffset: 0 !important; }\n      html body .banner, html body .cuenta { transform: translate(-50%, -50%) !important; }\n      html body .destello { opacity: .35 !important; }\n      html body .chispas { display: none !important; }\n    `;\n    document.head.appendChild(s);\n  })()"
+        }
+      ]
+    },
+    {
+      "name": "racha",
+      "path": "/",
+      "waitFor": ".juego",
+      "actions": [
+        {
+          "eval": "(() => {\n    localStorage.setItem('calculo-rapido:modo', 'escribir');\n    localStorage.setItem('calculo-rapido:dificultad', 'media');\n    localStorage.setItem('calculo-rapido:tema', 'canelos');\n    localStorage.setItem('calculo-rapido:sonido', 'off');\n  })()"
+        },
+        {
+          "goto": "/"
+        },
+        {
+          "waitFor": ".juego"
+        },
+        {
+          "press": "Space"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "eval": "(async () => {\n      const dormir = (ms) => new Promise((r) => setTimeout(r, ms));\n      const resolver = () => {\n        const [a, op, b] = [...document.querySelectorAll('.operacion > span')].slice(0, 3).map((x) => x.textContent);\n        return op === '+' ? +a + +b : +a - +b;\n      };\n      const libre = () => document.querySelector('.operacion:not(.operacion--bien):not(.operacion--error)');\n      const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set;\n      const escribir = (v) => {\n        const inp = document.querySelector('.entrada-oculta');\n        setter.call(inp, v);\n        inp.dispatchEvent(new Event('input', { bubbles: true }));\n      };\n      const errores = [];\n      const pausas = [];\n      for (let i = 0; i < 5; i++) {\n        while (!libre()) await dormir(30);\n        await dormir(pausas[i] ?? 250);\n        const r = resolver();\n        const v = errores.includes(i) ? r + 10 : r;\n        if ('escribir' === 'escribir') escribir(String(v));\n        else [...document.querySelectorAll('.opcion')].find((b) => +b.lastChild.textContent === v || errores.includes(i))?.click();\n        await dormir(120);\n      }\n      if ('nada' === 'parcial') {\n        while (!libre()) await dormir(30);\n        escribir(String(resolver())[0]);\n      }\n    })()"
+        },
+        {
+          "wait": 250
+        },
+        {
+          "eval": "(() => {\n    const s = document.createElement('style');\n    s.textContent = `\n      html body .grafica__linea { stroke-dashoffset: 0 !important; }\n      html body .banner, html body .cuenta { transform: translate(-50%, -50%) !important; }\n      html body .destello { opacity: .35 !important; }\n      html body .chispas { display: none !important; }\n    `;\n    document.head.appendChild(s);\n  })()"
+        }
+      ]
+    },
+    {
+      "name": "error",
+      "path": "/",
+      "waitFor": ".juego",
+      "actions": [
+        {
+          "eval": "(() => {\n    localStorage.setItem('calculo-rapido:modo', 'escribir');\n    localStorage.setItem('calculo-rapido:dificultad', 'media');\n    localStorage.setItem('calculo-rapido:tema', 'canelos');\n    localStorage.setItem('calculo-rapido:sonido', 'off');\n  })()"
+        },
+        {
+          "goto": "/"
+        },
+        {
+          "waitFor": ".juego"
+        },
+        {
+          "press": "Space"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "eval": "(async () => {\n      const dormir = (ms) => new Promise((r) => setTimeout(r, ms));\n      const resolver = () => {\n        const [a, op, b] = [...document.querySelectorAll('.operacion > span')].slice(0, 3).map((x) => x.textContent);\n        return op === '+' ? +a + +b : +a - +b;\n      };\n      const libre = () => document.querySelector('.operacion:not(.operacion--bien):not(.operacion--error)');\n      const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set;\n      const escribir = (v) => {\n        const inp = document.querySelector('.entrada-oculta');\n        setter.call(inp, v);\n        inp.dispatchEvent(new Event('input', { bubbles: true }));\n      };\n      const errores = [3];\n      const pausas = [];\n      for (let i = 0; i < 4; i++) {\n        while (!libre()) await dormir(30);\n        await dormir(pausas[i] ?? 250);\n        const r = resolver();\n        const v = errores.includes(i) ? r + 10 : r;\n        if ('escribir' === 'escribir') escribir(String(v));\n        else [...document.querySelectorAll('.opcion')].find((b) => +b.lastChild.textContent === v || errores.includes(i))?.click();\n        await dormir(120);\n      }\n      if ('nada' === 'parcial') {\n        while (!libre()) await dormir(30);\n        escribir(String(resolver())[0]);\n      }\n    })()"
+        },
+        {
+          "wait": 150
+        },
+        {
+          "eval": "(() => {\n    const s = document.createElement('style');\n    s.textContent = `\n      html body .grafica__linea { stroke-dashoffset: 0 !important; }\n      html body .banner, html body .cuenta { transform: translate(-50%, -50%) !important; }\n      html body .destello { opacity: .35 !important; }\n      html body .chispas { display: none !important; }\n    `;\n    document.head.appendChild(s);\n  })()"
+        }
+      ],
+      "hide": [
+        ".banner"
+      ]
+    },
+    {
+      "name": "opciones",
+      "path": "/",
+      "waitFor": ".juego",
+      "actions": [
+        {
+          "eval": "(() => {\n    localStorage.setItem('calculo-rapido:modo', 'opciones');\n    localStorage.setItem('calculo-rapido:dificultad', 'dificil');\n    localStorage.setItem('calculo-rapido:tema', 'canelos');\n    localStorage.setItem('calculo-rapido:sonido', 'off');\n  })()"
+        },
+        {
+          "goto": "/"
+        },
+        {
+          "waitFor": ".juego"
+        },
+        {
+          "press": "Space"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "eval": "(async () => {\n      const dormir = (ms) => new Promise((r) => setTimeout(r, ms));\n      const resolver = () => {\n        const [a, op, b] = [...document.querySelectorAll('.operacion > span')].slice(0, 3).map((x) => x.textContent);\n        return op === '+' ? +a + +b : +a - +b;\n      };\n      const libre = () => document.querySelector('.operacion:not(.operacion--bien):not(.operacion--error)');\n      const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set;\n      const escribir = (v) => {\n        const inp = document.querySelector('.entrada-oculta');\n        setter.call(inp, v);\n        inp.dispatchEvent(new Event('input', { bubbles: true }));\n      };\n      const errores = [];\n      const pausas = [];\n      for (let i = 0; i < 2; i++) {\n        while (!libre()) await dormir(30);\n        await dormir(pausas[i] ?? 250);\n        const r = resolver();\n        const v = errores.includes(i) ? r + 10 : r;\n        if ('opciones' === 'escribir') escribir(String(v));\n        else [...document.querySelectorAll('.opcion')].find((b) => +b.lastChild.textContent === v || errores.includes(i))?.click();\n        await dormir(120);\n      }\n      if ('nada' === 'parcial') {\n        while (!libre()) await dormir(30);\n        escribir(String(resolver())[0]);\n      }\n    })()"
+        },
+        {
+          "wait": 700
+        },
+        {
+          "eval": "(() => {\n    const s = document.createElement('style');\n    s.textContent = `\n      html body .grafica__linea { stroke-dashoffset: 0 !important; }\n      html body .banner, html body .cuenta { transform: translate(-50%, -50%) !important; }\n      html body .destello { opacity: .35 !important; }\n      html body .chispas { display: none !important; }\n    `;\n    document.head.appendChild(s);\n  })()"
+        }
+      ]
+    },
+    {
+      "name": "resultados",
+      "path": "/",
+      "waitFor": ".juego",
+      "actions": [
+        {
+          "eval": "(() => {\n    localStorage.setItem('calculo-rapido:modo', 'escribir');\n    localStorage.setItem('calculo-rapido:dificultad', 'media');\n    localStorage.setItem('calculo-rapido:tema', 'canelos');\n    localStorage.setItem('calculo-rapido:sonido', 'off');\n  })()"
+        },
+        {
+          "goto": "/"
+        },
+        {
+          "waitFor": ".juego"
+        },
+        {
+          "press": "Space"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "eval": "(async () => {\n      const dormir = (ms) => new Promise((r) => setTimeout(r, ms));\n      const resolver = () => {\n        const [a, op, b] = [...document.querySelectorAll('.operacion > span')].slice(0, 3).map((x) => x.textContent);\n        return op === '+' ? +a + +b : +a - +b;\n      };\n      const libre = () => document.querySelector('.operacion:not(.operacion--bien):not(.operacion--error)');\n      const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set;\n      const escribir = (v) => {\n        const inp = document.querySelector('.entrada-oculta');\n        setter.call(inp, v);\n        inp.dispatchEvent(new Event('input', { bubbles: true }));\n      };\n      const errores = [6];\n      const pausas = [1400,900,650,1700,1100,800,600,1900,1000,850];\n      for (let i = 0; i < 10; i++) {\n        while (!libre()) await dormir(30);\n        await dormir(pausas[i] ?? 250);\n        const r = resolver();\n        const v = errores.includes(i) ? r + 10 : r;\n        if ('escribir' === 'escribir') escribir(String(v));\n        else [...document.querySelectorAll('.opcion')].find((b) => +b.lastChild.textContent === v || errores.includes(i))?.click();\n        await dormir(120);\n      }\n      if ('nada' === 'parcial') {\n        while (!libre()) await dormir(30);\n        escribir(String(resolver())[0]);\n      }\n    })()"
+        },
+        {
+          "waitFor": ".resultados"
+        },
+        {
+          "wait": 1500
+        },
+        {
+          "hover": ".grafica__zona >> nth=3"
+        },
+        {
+          "eval": "(() => {\n    const s = document.createElement('style');\n    s.textContent = `\n      html body .grafica__linea { stroke-dashoffset: 0 !important; }\n      html body .banner, html body .cuenta { transform: translate(-50%, -50%) !important; }\n      html body .destello { opacity: .35 !important; }\n      html body .chispas { display: none !important; }\n    `;\n    document.head.appendChild(s);\n  })()"
+        }
+      ]
+    },
+    {
+      "name": "temas",
+      "path": "/",
+      "waitFor": ".juego",
+      "actions": [
+        {
+          "eval": "(() => {\n    localStorage.setItem('calculo-rapido:modo', 'escribir');\n    localStorage.setItem('calculo-rapido:dificultad', 'media');\n    localStorage.setItem('calculo-rapido:tema', 'canelos');\n    localStorage.setItem('calculo-rapido:sonido', 'off');\n  })()"
+        },
+        {
+          "goto": "/"
+        },
+        {
+          "waitFor": ".juego"
+        },
+        {
+          "click": ".temas__btn"
+        },
+        {
+          "waitFor": ".temas__panel"
+        },
+        {
+          "hover": ".tema >> text=catppuccin latte"
+        },
+        {
+          "wait": 400
+        }
+      ]
+    },
+    {
+      "name": "movil",
+      "path": "/",
+      "viewport": "mobile",
+      "waitFor": ".juego",
+      "actions": [
+        {
+          "eval": "(() => {\n    localStorage.setItem('calculo-rapido:modo', 'opciones');\n    localStorage.setItem('calculo-rapido:dificultad', 'media');\n    localStorage.setItem('calculo-rapido:tema', 'canelos');\n    localStorage.setItem('calculo-rapido:sonido', 'off');\n  })()"
+        },
+        {
+          "goto": "/"
+        },
+        {
+          "waitFor": ".juego"
+        },
+        {
+          "press": "Space"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "eval": "(async () => {\n      const dormir = (ms) => new Promise((r) => setTimeout(r, ms));\n      const resolver = () => {\n        const [a, op, b] = [...document.querySelectorAll('.operacion > span')].slice(0, 3).map((x) => x.textContent);\n        return op === '+' ? +a + +b : +a - +b;\n      };\n      const libre = () => document.querySelector('.operacion:not(.operacion--bien):not(.operacion--error)');\n      const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set;\n      const escribir = (v) => {\n        const inp = document.querySelector('.entrada-oculta');\n        setter.call(inp, v);\n        inp.dispatchEvent(new Event('input', { bubbles: true }));\n      };\n      const errores = [];\n      const pausas = [];\n      for (let i = 0; i < 3; i++) {\n        while (!libre()) await dormir(30);\n        await dormir(pausas[i] ?? 250);\n        const r = resolver();\n        const v = errores.includes(i) ? r + 10 : r;\n        if ('opciones' === 'escribir') escribir(String(v));\n        else [...document.querySelectorAll('.opcion')].find((b) => +b.lastChild.textContent === v || errores.includes(i))?.click();\n        await dormir(120);\n      }\n      if ('nada' === 'parcial') {\n        while (!libre()) await dormir(30);\n        escribir(String(resolver())[0]);\n      }\n    })()"
+        },
+        {
+          "wait": 1400
+        },
+        {
+          "eval": "(() => {\n    const s = document.createElement('style');\n    s.textContent = `\n      html body .grafica__linea { stroke-dashoffset: 0 !important; }\n      html body .banner, html body .cuenta { transform: translate(-50%, -50%) !important; }\n      html body .destello { opacity: .35 !important; }\n      html body .chispas { display: none !important; }\n    `;\n    document.head.appendChild(s);\n  })()"
+        }
+      ]
+    }
+  ]
+}

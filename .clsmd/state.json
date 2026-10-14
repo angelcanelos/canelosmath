@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "lastCommit": "0502ef9",
+  "updatedAt": "2026-10-14T00:00:00-06:00",
+  "language": "es",
+  "sections": ["intro", "toc", "descripcion", "capturas", "caracteristicas", "stack", "arquitectura", "flujo", "estructura", "requisitos", "instalacion", "uso", "tests", "autor"],
+  "sources": {
+    "intro": ["package.json", "src/App.jsx"],
+    "descripcion": ["src/components/GameScreen.jsx", "src/components/Results.jsx"],
+    "capturas": [".clsmd/config.json", "src/components/", "src/index.css"],
+    "caracteristicas": ["src/game/dificultades.js", "src/game/generator.js", "src/components/", "src/game/sonido.js", "src/game/temas.js"],
+    "stack": ["package.json", "vite.config.js"],
+    "arquitectura": ["src/main.jsx", "src/App.jsx", "src/components/", "src/game/", "src/game/storage.js"],
+    "flujo": ["src/components/GameScreen.jsx", "src/App.jsx"],
+    "estructura": ["src/", "index.html", "vite.config.js"],
+    "requisitos": ["package.json"],
+    "instalacion": ["package.json"],
+    "uso": ["package.json", "src/components/GameScreen.jsx", "src/components/Results.jsx", "src/components/Temas.jsx"],
+    "tests": ["src/game/generator.test.js"],
+    "autor": ["package.json"]
+  }
+}
