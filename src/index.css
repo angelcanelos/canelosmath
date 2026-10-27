@@ -303,6 +303,9 @@ kbd {
 }
 .grafica__tooltip-dato { color: var(--sub); font-size: .75rem; margin-top: 2px; }
 .resultados__botones { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+@media (max-height: 760px) {
+  .resultados { gap: 16px; }
+}
 
 /* ---------- Temas ---------- */
 .temas { position: fixed; right: 16px; bottom: 16px; z-index: 10; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
